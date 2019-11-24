@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue.js常用指令的测试</title>
+</head>
+<body>
+<!--实现在body区域显示一个传智播客名称-->
+<div id="app">
+    <!--相当于MVVM的view视图-->
+    <ul>
+        <li v-for="(item,index) in list" :key="index" v-if="index % 2 ==0">{{index}}--{{item}}</li>
+        <hr/>
+        <li v-for="(value,key) in user">{{key}}--{{value}}</li>
+        <hr/>
+        <li v-for="(item,index) in userlist" :key="item.user.name">
+            {{index}}-{{item}}
+        </li>
+        <hr/>
+        <li v-for="(item,index) in userlist" :key="item.user.name">
+            <div v-if="item.user.name == '小明'" style="background: #00f50c">
+                {{index}}--{{item.user.name}}--{{item.user.age}}
+            </div>
+            <div v-else="">
+                {{index}}--{{item.user.name}}--{{item.user.age}}
+            </div>
+        </li>
+    </ul>
+</div>
+</body>
+<script src="vue.min.js"></script>
+<script>
+    //编写MVVM中的model部分及VM（ViewModel）部分
+    var VM = new Vue({
+        el: '#app',//vm接管了app区域的管理
+        data: {//model数据
+            list: [5, 4, 3, 2, 1],
+            user: {name: '小明', age: 10},
+            userlist: [
+                {user: {name: '小明', age: 10}},
+                {user: {name: '小红', age: 11}}
+            ]
+        }
+    });
+</script>
+</html>
